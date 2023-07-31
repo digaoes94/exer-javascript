@@ -1,0 +1,82 @@
+//  Exercise to train arrays, had to learn methods that the instructor didn't talked about! Why? Because I tweaked a little bit with the goals. I've even got an ideia on how to push it further!
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Treino de Javascript</title>
+
+		<style type="text/css">
+			* {box-sizing: border-box; margin: 20px;}
+			body {background-color: gray; color: white; font-size: 30px; padding: 0px;}
+			div {border: solid 1px black; margin: 10px;}
+			div#main {clear: both; width: 100%; text-align: center; padding: 10px 0px; margin: auto;}
+			div.lista {height: 100%; width: 49%; float: left; display: block;}
+			h6 {text-align: center;}
+			input {width: 300px;}
+		</style>
+
+		<script type="text/javascript">
+			var lOriginal = [];
+			var lOrdenada = [];
+			var lOrdenada2 = [];
+			
+			function adicionar () {
+				var entry = document.getElementById('entrada').value;
+				let x = lOriginal.length - 1;
+
+				if (entry == '') {
+					alert('Favor digitar algo!');
+				}
+
+				if (lOriginal.length === 0) {
+					lOriginal.push(entry);
+					document.getElementById('original').innerHTML += "<li>" + lOriginal[0] + "</li>";
+				}
+				else {
+					let check = lOriginal.indexOf(entry);
+
+					if (check === -1) {
+						lOriginal.push(entry);
+						document.getElementById('original').innerHTML += "<li>" + lOriginal[x + 1] + "</li>";
+					}
+					else {
+						alert('Objeto já adicionado. Digite outro!');
+					}
+				}
+			}
+
+			function ordenar () {
+				document.getElementById('ordenada').innerHTML = "";
+				lOrdenada = lOriginal;
+				lOrdenada.sort();
+
+				for (var i = 0; i < lOrdenada.length; i++) {
+					document.getElementById('ordenada').innerHTML += "<li>" + lOrdenada[i] + "</li>";
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="main">
+			<h4>MINIMALIZANDO!!! Liste todos os itens que conseguir ver dentro do seu quarto:</h4>
+			<input type="text" id="entrada" placeholder="Digite aqui os itens">
+			<button onclick="adicionar()">Adicionar objeto</button>
+			<button onclick="ordenar()">Atualizar lista alfabética</button>	
+		</div>
+		
+
+		<div class="lista">
+			<h6>Lista Original</h6>
+			<ol id="original"></ol>	
+		</div>
+		
+		<div class="lista">
+			<h6>Lista Ordenada</h6>
+			<ol id="ordenada"></ol>	
+		</div>
+	</body>
+</html>
